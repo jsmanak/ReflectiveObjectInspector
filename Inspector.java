@@ -165,5 +165,33 @@ public class Inspector {
 				+ "' field classes");
 	}
 }
-	
+		/*
+	 * inspectFields introspects fields of the class. prints the number of fields,
+	 * their value, type, and their access type (private, public etc.).
+	*/ 
+	private void inspectFields(Object obj, Class objClass,
+			Vector objectsToInspect) {
+		System.out.println();
+		System.out.println("Inspecting '" + objClass.getSimpleName()
+				+ "' Field(s):");
+		if (objClass.getDeclaredFields().length >= 1) {
+			Field[] fields = objClass.getDeclaredFields();
+			System.out.println(fields.length + " Field(s) detected");
+			for (int i = 0; i < fields.length; i++) {
+				Field aField = fields[i];
+				aField.setAccessible(true);
+				if (!aField.getType().isPrimitive())
+					objectsToInspect.addElement(aField);
+
+				printFields(obj, aField);
+			}
+			System.out.println("End of '" + objClass.getSimpleName()
+					+ "' fields");
+		} else {
+			System.out.println("No fields detected");
+		}
+
+		if (objClass.getSuperclass() != null)
+			inspectFields(obj, objClass.getSuperclass(), objectsToInspect);
+	}
   }
