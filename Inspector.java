@@ -67,5 +67,25 @@ public class Inspector {
 			}
 		return params;
 	}
-
+	 //inspectInterfaces will introspect the interfaces of the object
+	private void inspectInterfaces(Object obj, Class objClass) {
+		System.out.println();
+		System.out.println("'" + objClass.getSimpleName() + "' Interface(s):");
+		Class[] interfaces = objClass.getInterfaces();
+		if (interfaces.length > 0) {
+			System.out.println(interfaces.length + " Interface(s) found");
+			for (int i = 0; i < interfaces.length; i++) {
+				System.out.println();
+				System.out.println("Interface: " + interfaces[i].getName());
+				System.out.println("Inspecting interface '"
+						+ interfaces[i].getSimpleName() + "':");
+				inspectMethods(obj, interfaces[i]);
+				inspectConstructor(obj, interfaces[i]);
+			}
+			System.out.println("End of '" + objClass.getSimpleName()
+					+ "' interfaces");
+		} else {
+			System.out.println("No interfaces found");
+		}
+	}
   }
