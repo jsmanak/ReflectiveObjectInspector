@@ -88,4 +88,24 @@ public class Inspector {
 			System.out.println("No interfaces found");
 		}
 	}
+	
+		 //printFields will print information on fields to console
+	private void printFields(Object obj, Field aField) {
+		try {
+			if (aField.getType().isArray()) {
+				System.out.println("Field: '" + aField.getName()
+						+ "'\n\t-Type: " + aField.getType().getComponentType()
+						+ "\n\t-Modifier: "
+						+ Modifier.toString(aField.getModifiers()));
+			} else {
+				System.out.println("Field: '" + aField.getName() + "' = "
+						+ aField.get(obj) + "\n\t-Type: " + aField.getType()
+						+ "\n\t-Modifier: "
+						+ Modifier.toString(aField.getModifiers()));
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	
   }
