@@ -42,5 +42,16 @@ public class Inspector {
 		if (recursive)
 			inspectFieldClasses(obj, objClass, objectsToInspect, recursive);
 	}
-  
+  	 //getMethodExceptions will return the exceptions thrown by a method
+	private String getMethodExceptions(Method aMethod) {
+		Class[] exceptions = aMethod.getExceptionTypes();
+		String except = "";
+		if (exceptions.length == 0)
+			except = "none";
+		else
+			for (Class aException : exceptions) {
+				except += aException.getSimpleName() + " ";
+			}
+		return except;
+	}
   }
