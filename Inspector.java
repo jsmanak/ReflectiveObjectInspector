@@ -106,6 +106,34 @@ public class Inspector {
 		} catch (Exception e) {
 		}
 	}
+	/*
+	 * inspectMethods introspects the methods of an object, returns modifiers, method name, parameter
+	 * types, return type, exception type.
+	 */
+	private void inspectMethods(Object obj, Class objClass) {
+		System.out.println();
+		System.out.println("'" + objClass.getSimpleName() + "' Method(s):");
+		Method[] methods = objClass.getDeclaredMethods();
+		if (methods.length >= 1) {
+			System.out.println(methods.length + " method(s) detected");
+			for (int i = 0; i < methods.length; i++) {
+				Method aMethod = methods[i];
+				String params = getMethodParameters(aMethod);
+				String except = getMethodExceptions(aMethod);
+				System.out.println("Method: '" + aMethod.getName()
+						+ "'\n\t-Parameter Type(s): " + params
+						+ "\n\t-Modifier(s): "
+						+ Modifier.toString(aMethod.getModifiers())
+						+ "\n\t-Return Type(s): " + aMethod.getReturnType()
+						+ "\n\t-Exception Type(s): " + except);
+			}
+			System.out.println("End of '" + objClass.getSimpleName()
+					+ "' methods");
+		} else {
+			System.out.println("No methods detected");
+		}
+	}
 
+	
 	
   }
