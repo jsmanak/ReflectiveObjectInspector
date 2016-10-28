@@ -194,4 +194,28 @@ public class Inspector {
 		if (objClass.getSuperclass() != null)
 			inspectFields(obj, objClass.getSuperclass(), objectsToInspect);
 	}
+	 // inspectConstructor will inspect the constructors of an object
+	private void inspectConstructor(Object obj, Class objClass) {
+		System.out.println();
+		System.out
+				.println("'" + objClass.getSimpleName() + "' Constructor(s):");
+		Constructor[] constructors = objClass.getConstructors();
+		if (constructors.length > 0) {
+			System.out
+					.println(constructors.length + " Constructor(s) Detected");
+			for (int i = 0; i < constructors.length; i++) {
+				Constructor aConstructor = constructors[i];
+				String params = getConstructorParameters(aConstructor);
+				System.out.println("Constructor: " + aConstructor.getName()
+						+ "\n\t-Parameters: " + params + "\n\t-Modifiers: "
+						+ Modifier.toString(aConstructor.getModifiers()));
+			}
+			System.out.println("End of '" + objClass.getSimpleName()
+					+ "' constructors");
+		} else {
+			System.out.println("No constructors Detected");
+		}
+	}
+
+
   }
