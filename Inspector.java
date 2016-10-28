@@ -54,4 +54,18 @@ public class Inspector {
 			}
 		return except;
 	}
+	
+		//getConstructorParameters will return a constructors list of the parameters
+	private String getConstructorParameters(Constructor aConstructor) {
+		Class[] parameters = aConstructor.getParameterTypes();
+		String params = "";
+		if (parameters.length == 0)
+			params = "none";
+		else
+			for (Class aParam : parameters) {
+				params += aParam.getSimpleName() + " ";
+			}
+		return params;
+	}
+
   }
