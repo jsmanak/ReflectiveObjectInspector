@@ -149,14 +149,14 @@ public class Inspector {
 
 			try {
 				System.out
-						.println("******************************************************");
+						.println("***********************************");
 				inspect(f.get(obj), recursive);
 				System.out
-						.println("******************************************************");
+						.println("************************************");
 			} catch (NullPointerException nullExp) {
 				System.out.println("Field not instantiated at runtime");
 				System.out
-						.println("******************************************************");
+						.println("*****************************");
 			} catch (Exception exp) {
 				exp.printStackTrace();
 			}
@@ -216,6 +216,16 @@ public class Inspector {
 			System.out.println("No constructors Detected");
 		}
 	}
-
+	//  inspectSuperclass will introspect on the superclass of an object
+	private void inspectSuperclass(Object obj, Class objClass,
+			Vector objectsToInspect) {
+		System.out.println();
+		System.out
+				.println("'" + objClass.getSimpleName() + "' Superclass(es):");
+		Class superclass = objClass.getSuperclass();
+		inspectMethods(obj, superclass);
+		inspectConstructor(obj, superclass);
+		inspectFields(obj, superclass, new Vector());
+	}
 
   }
