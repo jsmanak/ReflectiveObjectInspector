@@ -13,7 +13,7 @@ public class InspectorTests extends TestCase{
     Object obj;
     Class testClass;
     
-    public InspectorTest()
+    public InspectorTests()
     {
             testInspector = new Inspector();
             obj = new ClassA();
