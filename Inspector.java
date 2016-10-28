@@ -134,6 +134,36 @@ public class Inspector {
 		}
 	}
 
-	
+		 //inspectFieldClasses introspects an object's fields which are also objects.
+	private void inspectFieldClasses(Object obj, Class objClass,
+			Vector objectsToInspect, boolean recursive) {
+
+		if (objectsToInspect.size() > 0)
+			System.out.println("'" + objClass.getSimpleName()
+					+ "' Field Class(es):");
+
+		Enumeration e = objectsToInspect.elements();
+		while (e.hasMoreElements()) {
+			Field f = (Field) e.nextElement();
+			System.out.println("Inspecting Field: '" + f.getName() + "'");
+
+			try {
+				System.out
+						.println("******************************************************");
+				inspect(f.get(obj), recursive);
+				System.out
+						.println("******************************************************");
+			} catch (NullPointerException nullExp) {
+				System.out.println("Field not instantiated at runtime");
+				System.out
+						.println("******************************************************");
+			} catch (Exception exp) {
+				exp.printStackTrace();
+			}
+		}
+		System.out.println("End of '" + objClass.getSimpleName()
+				+ "' field classes");
+	}
+}
 	
   }
