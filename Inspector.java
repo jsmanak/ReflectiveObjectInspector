@@ -227,5 +227,20 @@ public class Inspector {
 		inspectConstructor(obj, superclass);
 		inspectFields(obj, superclass, new Vector());
 	}
-
+	 // getMethodParameters returns the parameters of a method 
+	private String getMethodParameters(Method aMethod) {
+		Class[] parameters = aMethod.getParameterTypes();
+		String params = "";
+		if (parameters.length == 0)
+			params = "none";
+		else
+			for (Class aParam : parameters) {
+				params += aParam.getSimpleName() + " ";
+			}
+		return params;
+	}
+	
   }
+/* this code was built with libraries in java.lang.reflect
+ * as well as help from TA Zahra Sahaf, and Stephen Armstrong
+ */
